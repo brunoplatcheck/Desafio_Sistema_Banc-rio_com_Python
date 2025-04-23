@@ -1,103 +1,53 @@
-![deepseek_mermaid_20250423_f41abf](https://github.com/user-attachments/assets/8b33d122-a0d5-4f24-8617-704181ab965d)🏦 Sistema Bancário POO - V3
-📌 Visão Geral
-Este projeto é uma evolução do sistema bancário, agora implementado com Programação Orientada a Objetos seguindo um diagrama UML específico. O sistema gerencia clientes, contas correntes e transações bancárias de forma estruturada e segura.
+![deepseek_mermaid_20250423_f41abf](https://github.com/user-attachments/assets/c4cb891d-4c9f-43f5-ab51-48a7ec036308)# 🏦 Sistema Bancário POO - V3
 
-🔧 Arquitetura do Sistema
+![Bank System](https://img.icons8.com/color/48/000000/bank.png) *Sistema bancário orientado a objetos*
 
-classDiagram
-    class Transacao{
-        <<abstract>>
-        +registrar(conta: Conta)
-    }
-    
-    class Historico{
-        -transacoes: list
-        +adicionar_transacao(transacao: Transacao)
-    }
-    
-    class Conta{
-        -saldo: float
-        -numero: int
-        -agencia: str
-        -cliente: Cliente
-        -historico: Historico
-        +sacar(valor: float) bool
-        +depositar(valor: float) bool
-    }
-    
-    class ContaCorrente{
-        -limite: float
-        -limite_saques: int
-    }
-    
-    class Cliente{
-        -endereco: str
-        -contas: list
-        +realizar_transacao(conta: Conta, transacao: Transacao)
-        +adicionar_conta(conta: Conta)
-    }
-    
-    class PessoaFisica{
-        -cpf: str
-        -nome: str
-        -data_nascimento: date
-    }
-    
-    class Deposito{
-        -valor: float
-        +registrar(conta: Conta)
-    }
-    
-    class Saque{
-        -valor: float
-        +registrar(conta: Conta)
-    }
-    
-    Transacao <|-- Deposito
-    Transacao <|-- Saque
-    Conta <|-- ContaCorrente
-    Cliente <|-- PessoaFisica
-    Conta "1" *-- "1" Historico
-    Conta "1" *-- "1" Cliente
-    Cliente "1" *-- "*" Conta
+## 📋 Índice
 
-🌟 Principais Melhorias da V3
-Padrão de projeto: Implementação do padrão Strategy para transações
+- [Visão Geral](#-visão-geral)
+- [Diagrama de Classes](#-diagrama-de-classes)
+- [Funcionalidades](#-funcionalidades)
+- [Como Executar](#-como-executar)
+- [Próximas Atualizações](#-próximas-atualizações)
+- [Conceitos POO Aplicados](#-conceitos-poo-aplicados)
 
-Encapsulamento: Atributos protegidos com propriedades
+## 🌐 Visão Geral
 
-Herança: Hierarquia de classes conforme diagrama UML
+Sistema bancário completo implementado com **Programação Orientada a Objetos**, seguindo padrões de design e boas práticas de desenvolvimento.
 
-Polimorfismo: Métodos com comportamentos diferentes nas subclasses
+```python
+class Conta:
+    def __init__(self, numero, cliente):
+        self._saldo = 0
+        self._numero = numero
+        self._agencia = "0001"
+        self._cliente = cliente
+        self._historico = Historico()
 
-Abstração: Classe Transacao como interface abstrata
+🛠️ Funcionalidades
+Operações Bancárias
+Operação	Descrição	Limites
+Depósito	Valores positivos	-
+Saque	Limite diário	R$ 500,00
+Extrato	Histórico completo	Últimas 30 transações
+Cadastros
+👤 Clientes (PF)
 
-🚀 Funcionalidades
-👤 Gestão de Clientes
-Cadastro de pessoas físicas com CPF válido
+💳 Contas Correntes
 
-Associação automática de contas
+🔄 Transações
 
-Autenticação por CPF
+🚀 Como Executar
+Clone o repositório:
 
-💰 Operações Bancárias
-Depósitos: Valores positivos
+bash
+git clone https://github.com/seu-usuario/sistema-bancario-poo.git
+Execute o sistema:
 
-Saques: Com limites configuráveis
-
-Extrato: Histórico detalhado de transações
-
-📊 Gestão de Contas
-Criação de contas correntes
-
-Limites personalizáveis por conta
-
-Vinculação automática ao cliente
-
-⚙️ Como Executar
 bash
 python3 bancario_poo.py
-📝 Menu Principal
+Use o menu interativo:
+
 ======== MENU ========
 [1] Depositar
 [2] Sacar
@@ -107,27 +57,45 @@ python3 bancario_poo.py
 [6] Listar contas
 [7] Sair
 => 
-✅ Requisitos do Sistema
-Python 3.8+
+🔮 Próximas Atualizações
+Implementação core POO
 
-Nenhuma dependência externa
-
-📈 Próximas Atualizações
 Persistência em banco de dados
 
-Sistema de login com hash de senha
+Autenticação segura
 
-Implementação de conta poupança
+Interface web
 
-Geração de relatórios em PDF
+🧠 Conceitos POO Aplicados
+Conceito	Aplicação
+Abstração	Classe Transacao abstrata
+Encapsulamento	Atributos privados (_saldo)
+Herança	ContaCorrente herda de Conta
+Polimorfismo	Método registrar()
+Composição	Conta tem um Historico
+Desenvolvido com ❤️ usando Python puro e padrões de projeto OO.
 
-API REST para integração
 
-📚 Conceitos Aplicados
-✔️ Abstração através da classe Transacao
-✔️ Encapsulamento com atributos privados
-✔️ Herança entre classes relacionadas
-✔️ Polimorfismo nas operações bancárias
-✔️ Composição entre Conta e Historico
+### Observações sobre o README.md:
 
-Este projeto demonstra uma implementação robusta de princípios de POO em um sistema bancário realista.
+1. **Formatação Markdown**:
+   - Títulos com `#`
+   - Códigos com ``` ```
+   - Tabelas com `|`
+   - Listas com `-` ou `[ ]`
+
+2. **Elementos incluídos**:
+   - Diagrama Mermaid (funciona no GitHub)
+   - Tabela de funcionalidades
+   - Roadmap de desenvolvimento
+   - Exemplo de código
+   - Índice navegável
+
+3. **Personalização**:
+   - Substitua os emojis se preferir
+   - Adicione badges de status
+   - Inclua seção de contribuição
+
+4. **Renderização**:
+   - Visualize o resultado no GitHub
+   - Ou usando editores Markdown como VSCode
